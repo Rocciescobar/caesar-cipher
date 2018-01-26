@@ -1,18 +1,25 @@
-// 1. Cifrando frase
+// 1. CIFRADO
 
-// Creando función para cifrar
-function cipher(phrase) {
+let btnCipher = $('#btnCipher'); 
+
+btnCipher.click((event) => {
+  event.preventDefault();
+  cipher(this);  
+});
+
+// Función para cifrar
+let cipher = (phrase) => {
   // Pidiendo una frase al usuario
-  var phrase = document.getElementsByTagName("input")[0].value;
-
+  var phrase = document.getElementsByTagName('input')[0].value;
+  
   // Obtener el caracter ASCII de cada letra y almacenar en un array
-  var inputPhrase = [];
-  for (i = 0; i < phrase.length; i++) {
+  let inputPhrase = [];
+  for (let i = 0; i < phrase.length; i++) {
     inputPhrase.push(phrase.charCodeAt(i));
   }
 
   // Aplicar fórmula
-  for (j = 0; j < phrase.length; j++) {
+  for (let j = 0; j < phrase.length; j++) {
     if (inputPhrase[j] >= 65 && inputPhrase[j] <= 90) { // Para letras MAYUSCULAS
       inputPhrase[j] = (inputPhrase[j] - 65 + 33) % 26 + 65;
     } else if (inputPhrase[j] >= 97 && inputPhrase[j] <= 122) { // Para letras minusculas
@@ -21,32 +28,39 @@ function cipher(phrase) {
       inputPhrase[j] = inputPhrase [j];
     }
   }
-
+  
   // Transformar número en letra (Caracter ASCII)
-  var outputPhrase = [];
-  for (j = 0; j < phrase.length; j++) {
+  let outputPhrase = [];
+  for (let j = 0; j < phrase.length; j++) {
     outputPhrase.push(String.fromCharCode(inputPhrase[j]));
   }
 
   // Convertir el array en string y mostrar frase cifrada al usuario
-  document.getElementById('resultado').innerHTML = outputPhrase.join('');
-}
+  document.getElementById('result').innerHTML = outputPhrase.join('');
+};
 
-// 2. Descifrando frase
+// 2. DESCIFRADO
+
+let btnDecipher = $('#btnDecipher');
+
+btnDecipher.click((event) => {
+  event.preventDefault();
+  decipher(this);
+});
 
 // Creando función para descifrar
-function decipher(phrase) {
+let decipher = (phrase) => {
 // Pidiendo una frase al usuario
-  var phrase = document.getElementsByTagName("input")[0].value;
+  var phrase = document.getElementsByTagName('input')[0].value;
 
   // Obtener el caracter ASCII de cada letra y almacenar en un array
-  var inputPhrase = [];
-  for (i = 0; i < phrase.length; i++) {
+  let inputPhrase = [];
+  for (let i = 0; i < phrase.length; i++) {
     inputPhrase.push(phrase.charCodeAt(i));
   }
 
   // Aplicar fórmula
-  for (j = 0; j < phrase.length; j++) {
+  for (let j = 0; j < phrase.length; j++) {
     if (inputPhrase[j] >= 65 && inputPhrase[j] <= 90) { 
       inputPhrase[j] = (- 33) % 26 + inputPhrase[j];
     } else if (inputPhrase[j] >= 97 && inputPhrase[j] <= 122) {
@@ -57,11 +71,11 @@ function decipher(phrase) {
   }
 
   // Transformar número en letra (Caracter ASCII)
-  var outputPhrase = [];
-  for (j = 0; j < phrase.length; j++) {
+  let outputPhrase = [];
+  for (let j = 0; j < phrase.length; j++) {
     outputPhrase.push(String.fromCharCode(inputPhrase[j]));
   }
 
   // Convertir el array en string y mostrar frase cifrada al usuario
-  document.getElementById('resultado').innerHTML = outputPhrase.join('');
-}
+  document.getElementById('result').innerHTML = outputPhrase.join('');
+};
